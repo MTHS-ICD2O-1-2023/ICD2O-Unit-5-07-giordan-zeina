@@ -6,6 +6,19 @@
 
 "use strict"
 
+/**
+ * Check servie worker.
+ */
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register("/ICD2O-5-07/sw.js", {
+    scope: "/ICD2O-5-07/",
+  })
+}
+
+/**
+ * This function displays an alert.
+ */
+
 function myButtonClicked() {
   // input
   const number = parseInt(document.getElementById('number').value)
