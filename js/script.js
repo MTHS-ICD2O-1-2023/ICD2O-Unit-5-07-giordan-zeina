@@ -1,32 +1,26 @@
 // Copyright (c) 2024 Giordan Zeina All rights reserved
 //
 // Created by: Giordan Zeina
-// Created on: May 2024
+// Created on: Jun 2024
 // This file contains the JS functions for index.html
 
 "use strict"
 
-/**
- * Check servie worker.
- */
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/ICD2O-5-07/sw.js", {
-    scope: "/ICD2O-5-07/",
-  })
-}
-
-/**
- * This function displays an alert.
- */
-
-function myButtonClicked() {
+window.onload = function () {
   // input
-  const number = parseInt(document.getElementById('number').value)
+  const params = new URLSearchParams(document.location.search)
+  const number = params.get('number') || 0
   let answer = 0
 
   // process
   for (let counter = 0; counter <= number; counter++) {
     answer += counter
   }
+
+  // add query string to URL
+  const newURL = new URL(document.location)
+  newURL.searchParams.set('answer', answer)
+  document.location.href = newURL.href
+
   document.getElementById('answer').innerHTML = "The sum of all the numbers from 0 to " + number + " is: " + answer
 }
